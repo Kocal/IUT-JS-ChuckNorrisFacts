@@ -14,13 +14,15 @@ body {
   align-items: center;
   padding: 20px; }
   #page__header .actions {
-    padding-left: 16px; }
+    padding: 0 16px;
+    flex: 1; }
 
 .jokes {
   max-width: 900px;
   width: 100%;
   margin: 32px auto; }
   .jokes .joke {
+    width: 100%;
     padding: 16px;
     margin-bottom: 16px; }
   .jokes .joke__joke {
