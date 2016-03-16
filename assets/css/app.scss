@@ -1,5 +1,11 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 @import "layout/layout";
 @import "layout/header";
+@import "layout/jokes";
 
 @import "theme/page";
 @import "theme/page__header";
+@import "theme/jokes";

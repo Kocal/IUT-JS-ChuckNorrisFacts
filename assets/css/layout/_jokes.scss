@@ -1,0 +1,17 @@
+.jokes {
+  $gutter: 16px;
+
+  max-width: 900px;
+  width: 100%;
+
+  margin: 32px auto;
+
+  .joke {
+    padding: $gutter;
+    margin-bottom: $gutter;
+  }
+
+  .joke__joke {
+    margin: 0 0 $gutter;
+  }
+}
