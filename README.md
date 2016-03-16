@@ -1,4 +1,10 @@
-# [IUT] JS : Ajax et JSON
+# [IUT] JS : Chuck Norris Facts
+
+## Objectifs
+
+1. Utiliser AJAX, jQuery et Isotope
+2. Comprendre les fonctionnements asynchromes
+3. Proposer une interface responsive et ergonomique
 
 ## Sujet
 
