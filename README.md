@@ -31,9 +31,42 @@ Le rendu est réalisé en une fois à la fin du cours, aucun rendu réalisé apr
 
 ## Conception
 
+### Rendu HTML/CSS
+
 1. Je commence tout d'abord par créer le style de la page avant la récupération des données à l'API afin de ne pas effectuer deux tâches en même temps (Style de la page et interprétation des données)
 2. La page est séparée en deux parties :
     1. Le header, là où se trouveront les différents boutons pour intéragir avec la page
     2. La section des jokes, là où seront affichées les jokes récupérées sur l'API
 3. Une fois le style terminé, je peux commencer la récupération des données sur l'API et ensuite les intégrer à la page
-4. Un système de template (maison) sera utilisé pour l'affichage des jokes
+
+### Récupération des CNF et traitements
+
+1. Un système de template (maison) sera utilisé pour l'affichage des jokes afin d'avoir un code maintenable et lisible
+2. Une méthode permet de récupérer une joke à l'API. La méthode pour récupérer plusieurs jokes fera `n` appels à la fonction précédente
+3. Insertion d'une joke dans le code HTML :
+    1. La joke est récupérée au format JSON 
+    2. On applique la joke sur une copie du template HTML de la joke => `$joke` 
+    3. On insère le nouvel élément `$joke` dans le conteneur des jokes
+    4. On informe `Isotope` qu'une joke a été insérée
+
+### Intéractions
+
+#### Bouton pour ajouter 3 jokes
+
+Ce bouton permet à l'utilisateur de charger et d'ajouter dans le DOM 3 jokes supplémentaires
+
+1. Le bouton appelle simplement la méthode `CNF::fetchRandomJokes(3)`
+
+#### Liste déroulante pour le tri
+
+1. La liste déroulante permet de trier selon l'ordre alphabétique des jokes, ou alors des identifiants. Que ce soit croissant ou décroissant.
+2. Dès que la valeur change :
+    1. Les options du `sortBy` sont générées dynamiquement en fonction de la `value` de la liste déroulante
+    2. On lance un `sortBy` de `Isotope`
+
+#### Liste déroulante pour les catégories
+
+1. La liste déroulante est dynamique. Elle n'affiche que les catégories des jokes qui sont présentes dans le DOM
+2. Dès que la valeur change :
+    1. On lance un filtre `Isotope`
+    2. Ce filtre trie dynamiquement la catégories des jokes en fonction de la valeur de la liste déroulante 
