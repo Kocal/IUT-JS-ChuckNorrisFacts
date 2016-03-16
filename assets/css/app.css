@@ -30,10 +30,17 @@ body {
   font-family: 'Roboto', sans-serif; }
 
 #page__header {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   background-color: #416dff;
   color: #dae3ff; }
   #page__header .brand {
     font-weight: bold; }
+  #page__header .header-item {
+    color: #fff;
+    text-decoration: none; }
 
 .joke {
   background: #f3f3f3;

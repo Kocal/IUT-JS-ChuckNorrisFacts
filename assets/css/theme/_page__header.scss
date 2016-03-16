@@ -1,10 +1,20 @@
 $page__header-color: #416dff;
 
 #page__header{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
   background-color: $page__header-color;
   color: lighten($page__header-color, 30%);
 
   .brand {
     font-weight: bold;
+  }
+
+  .header-item {
+    color: #fff;
+    text-decoration: none;
   }
 }
