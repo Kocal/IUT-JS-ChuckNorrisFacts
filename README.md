@@ -26,3 +26,14 @@ Lorsque l'on appuie sur ce chargement complémentaire, un message de chargement 
 - Chargements complémentaires : 5 points
 
 Le rendu est réalisé en une fois à la fin du cours, aucun rendu réalisé après la fin du cours (**heure précise**) ne sera pris en compte.
+
+------------------------------------------------------------------------
+
+## Conception
+
+1. Je commence tout d'abord par créer le style de la page avant la récupération des données à l'API afin de ne pas effectuer deux tâches en même temps (Style de la page et interprétation des données)
+2. La page est séparée en deux parties :
+    1. Le header, là où se trouveront les différents boutons pour intéragir avec la page
+    2. La section des jokes, là où seront affichées les jokes récupérées sur l'API
+3. Une fois le style terminé, je peux commencer la récupération des données sur l'API et ensuite les intégrer à la page
+4. Un système de template (maison) sera utilisé pour l'affichage des jokes
