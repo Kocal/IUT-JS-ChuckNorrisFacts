@@ -17,6 +17,8 @@ body {
   #page__header .actions {
     padding: 0 16px;
     flex: 1; }
+  #page__header form {
+    display: inline-block; }
 
 .jokes {
   max-width: 900px;
@@ -63,4 +65,4 @@ body {
   font-weight: bold;
   color: rgba(0, 0, 0, 0.7); }
 
-/*# sourceMappingURL=app.css.map */
+/*# sourceMappingURL=cnf.css.map */

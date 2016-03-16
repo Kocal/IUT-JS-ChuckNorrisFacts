@@ -1,4 +1,4 @@
-function App($jokesContainer, $jokeTemplate, $selectFilterCategories) {
+function CNF($jokesContainer, $jokeTemplate, $selectFilterCategories) {
     this.API = {
         RANDOM_JOKES: 'http://api.icndb.com/jokes/random'
     };
@@ -11,7 +11,7 @@ function App($jokesContainer, $jokeTemplate, $selectFilterCategories) {
 /**
  * Récupère une random joke sur l'API et fait ensuite le traitement
  */
-App.prototype.fetchRandomJoke = function () {
+CNF.prototype.fetchRandomJoke = function () {
     var self = this;
 
     $.get(this.API.RANDOM_JOKES, function (datas) {
@@ -19,7 +19,9 @@ App.prototype.fetchRandomJoke = function () {
 
         self.buildJokeFrom(joke, function($joke) {
             $joke.hide();
-            self.$jokesContainer.prepend($joke).isotope('prepended', $joke);
+            self.$jokesContainer.prepend($joke);
+            self.$jokesContainer.isotope('prepended', $joke);
+            self.$jokesContainer.isotope('updateSortData', $joke);
         });
 
     }).error(function () {
@@ -28,10 +30,10 @@ App.prototype.fetchRandomJoke = function () {
 };
 
 /**
- * Fait `count` appel à App::fetchRandomJoke() où `count` > 0
+ * Fait `count` appel à CNF::fetchRandomJoke() où `count` > 0
  * @param {Number} count Nombre de blagues aléatoires à récupérer
  */
-App.prototype.fetchRandomJokes = function (count) {
+CNF.prototype.fetchRandomJokes = function (count) {
     if (count <= 0) {
         console.info("Il n'est pas possible de récupérer un nombre négatif ou nul de jokes");
         return;
@@ -47,7 +49,7 @@ App.prototype.fetchRandomJokes = function (count) {
  * @param {Object} joke
  * @param {Function} callback
  */
-App.prototype.buildJokeFrom = function (joke, callback) {
+CNF.prototype.buildJokeFrom = function (joke, callback) {
     var self = this;
 
     var template = this.jokesTemplate;
@@ -77,7 +79,7 @@ App.prototype.buildJokeFrom = function (joke, callback) {
     callback($(template));
 };
 
-App.prototype.maybeUpdateCategoriesFilter = function (category, categoryUcFirst) {
+CNF.prototype.maybeUpdateCategoriesFilter = function (category, categoryUcFirst) {
     if(this.$selectFilterCategories.find('option[value="' + category + '"]').length > 0) {
         return;
     }
