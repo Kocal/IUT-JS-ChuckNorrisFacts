@@ -12,35 +12,73 @@
   <div class="actions">
     <a href="" class="header-item add-3-cnf">Ajouter 3 CNF</a>
   </div>
+  <div class="form">
+    <form class="filter-jokes">
+      <label>Filtrer par catégories : <select class="filter-categories">
+        <option value="toutes">Toutes</option>
+      </select></label>
+    </form>
+  </div>
 </header>
 
 <main id="page__main" role="main">
 
   <section class="jokes">
-    <div id="joke-template" style="display: none">
-      <article class="joke">
-        <h3 class="joke__joke">{{ joke_joke }}</h3>
-        <footer class="joke__details">Joke #<span class="joke__id">{{ joke_id }}</span><br>
-          Catégories &laquo;&nbsp;<span class="joke__categories">{{ joke_categories }}</span>&nbsp;&raquo;</footer>
-      </article>
-    </div>
-  </section>
 
+  </section>
 </main>
 
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src="assets/js/app.js"></script>
+<div id="joke-template" style="display: none">
+  <article class="joke">
+    <h3 class="joke__joke">{{ joke_joke }}</h3>
+    <footer class="joke__details">Joke #<span class="joke__id">{{ joke_id }}</span><br>
+      Catégories &laquo;&nbsp;<span class="joke__categories">{{ joke_categories }}</span>&nbsp;&raquo;</footer>
+  </article>
+</div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+<script src="assets/js/fit-columns.js"></script>
+<script src="assets/js/app.js"></script>
 <script>
+
   var app;
+  var $grid;
 
   $(document).ready(function () {
-    var $jokesContainer = $('.jokes');
-    var $jokeTemplate = $('#joke-template');
+    var $jokesContainer = $('.jokes').isotope({
+      layoutMode: 'fitRows',
+      itemSelector: '.joke'
+    });
 
-    app = new App($jokesContainer, $jokeTemplate);
+    var $jokeTemplate = $('#joke-template');
+    var $selectFilterCategories = $('select.filter-categories');
+
+    app = new App($jokesContainer, $jokeTemplate, $selectFilterCategories);
     app.fetchRandomJokes(5);
+
+    $('.actions').on('click', '.add-3-cnf', function(e) {
+      e.preventDefault();
+      app.fetchRandomJokes(3);
+    });
+
+    $selectFilterCategories.on('change', function(e) {
+      var $this = $(this);
+      var value = $this.val();
+
+      $jokesContainer.isotope({
+        filter: function() {
+          var $this = $(this);
+          var $categories = $this.find('.joke__categories');
+
+          if(value == 'toutes') {
+            return true;
+          }
+
+          return $categories.text().match(new RegExp(value, 'i'));
+        }
+      });
+    });
   });
 </script>
 </body>

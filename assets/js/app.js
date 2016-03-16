@@ -1,10 +1,11 @@
-function App($jokesContainer, $jokeTemplate) {
+function App($jokesContainer, $jokeTemplate, $selectFilterCategories) {
     this.API = {
         RANDOM_JOKES: 'http://api.icndb.com/jokes/random'
     };
 
     this.$jokesContainer = $jokesContainer;
     this.jokesTemplate = $jokeTemplate.html();
+    this.$selectFilterCategories = $selectFilterCategories;
 }
 
 /**
@@ -18,9 +19,7 @@ App.prototype.fetchRandomJoke = function () {
 
         self.buildJokeFrom(joke, function($joke) {
             $joke.hide();
-            self.$jokesContainer.prepend($joke);
-            $joke.fadeIn(200);
-            $joke.slideDown(500);
+            self.$jokesContainer.prepend($joke).isotope('prepended', $joke);
         });
 
     }).error(function () {
@@ -49,15 +48,22 @@ App.prototype.fetchRandomJokes = function (count) {
  * @param {Function} callback
  */
 App.prototype.buildJokeFrom = function (joke, callback) {
+    var self = this;
+
     var template = this.jokesTemplate;
     var categories;
 
     // Traitement spécial pour les catégories
     if (joke.categories.length == 0) {
         categories = 'Aucune';
+        this.maybeUpdateCategoriesFilter('aucune', categories);
     } else {
         categories = joke.categories.map(function (str) {
-            return str.ucFirst();
+            var strUcFirst = str.ucFirst();
+
+            self.maybeUpdateCategoriesFilter(str, strUcFirst);
+
+            return strUcFirst;
         }).join('</span>, <span class="joke__category">');
 
         categories = "<span class='joke__category'>" + categories + "</span>";
@@ -67,8 +73,21 @@ App.prototype.buildJokeFrom = function (joke, callback) {
     template = template.templateRemplace('joke_id', joke.id);
     template = template.templateRemplace('joke_joke', joke.joke);
     template = template.templateRemplace('joke_categories', categories);
-
+    
     callback($(template));
+};
+
+App.prototype.maybeUpdateCategoriesFilter = function (category, categoryUcFirst) {
+    if(this.$selectFilterCategories.find('option[value="' + category + '"]').length > 0) {
+        return;
+    }
+
+    var $option = $('<option>', {
+        value: category,
+        text: categoryUcFirst
+    });
+
+    this.$selectFilterCategories.append($option);
 };
 
 /**
