@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+
+#page__header {
+  display: flex;
+  align-items: center;
+  padding: 20px; }
+  #page__header .actions {
+    padding-left: 16px; }
+
+body {
+  font-family: 'Roboto', sans-serif; }
+
+#page__header {
+  background-color: #416dff;
+  color: #dae3ff; }
+  #page__header .brand {
+    font-weight: bold; }
+
+/*# sourceMappingURL=app.css.map */

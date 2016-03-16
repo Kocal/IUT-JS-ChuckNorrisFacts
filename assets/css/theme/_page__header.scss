@@ -1,0 +1,10 @@
+$page__header-color: #416dff;
+
+#page__header{
+  background-color: $page__header-color;
+  color: lighten($page__header-color, 30%);
+
+  .brand {
+    font-weight: bold;
+  }
+}
