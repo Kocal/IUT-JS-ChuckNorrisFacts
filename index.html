@@ -7,38 +7,41 @@
 </head>
 <body>
 
-  <header id="page__header" role="banner">
-    <span class="brand">Chuck Norris Facts</span>
-    <div class="actions">
-      <a href="" class="header-item add-3-cnf">Ajouter 3 CNF</a>
+<header id="page__header" role="banner">
+  <span class="brand">Chuck Norris Facts</span>
+  <div class="actions">
+    <a href="" class="header-item add-3-cnf">Ajouter 3 CNF</a>
+  </div>
+</header>
+
+<main id="page__main" role="main">
+
+  <section class="jokes">
+    <div id="joke-template" style="display: none">
+      <article class="joke">
+        <h3 class="joke__joke">{{ joke_joke }}</h3>
+        <footer class="joke__details">Joke #<span class="joke__id">{{ joke_id }}</span><br>
+          Catégories &laquo;&nbsp;<span class="joke__categories">{{ joke_categories }}</span>&nbsp;&raquo;</footer>
+      </article>
     </div>
-  </header>
+  </section>
 
-  <main id="page__main" role="main">
+</main>
 
-    <section class="jokes">
-      <article class="joke">
-        <h3 class="joke__joke">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, obcaecati.</h3>
-        <footer class="joke__details">Joke #<span class="joke__id">12</span>, catégorie &laquo;&nbsp;<span class="joke__category">Une catégorie</span>&nbsp;&raquo;</footer>
-      </article>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="assets/js/app.js"></script>
 
-      <article class="joke">
-        <h3 class="joke__joke">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, obcaecati.</h3>
-        <footer class="joke__details">Joke #<span class="joke__id">12</span>, catégorie &laquo;&nbsp;<span class="joke__category">Une catégorie</span>&nbsp;&raquo;</footer>
-      </article>
-      <article class="joke">
+<script>
+  var app;
 
-        <h3 class="joke__joke">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, obcaecati.</h3>
-        <footer class="joke__details">Joke #<span class="joke__id">12</span>, catégorie &laquo;&nbsp;<span class="joke__category">Une catégorie</span>&nbsp;&raquo;</footer>
-      </article>
+  $(document).ready(function () {
+    var $jokesContainer = $('.jokes');
+    var $jokeTemplate = $('#joke-template');
 
-      <article class="joke">
-        <h3 class="joke__joke">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, obcaecati.</h3>
-        <footer class="joke__details">Joke #<span class="joke__id">12</span>, catégorie &laquo;&nbsp;<span class="joke__category">Une catégorie</span>&nbsp;&raquo;</footer>
-      </article>
-    </section>
-
-  </main>
-
+    app = new App($jokesContainer, $jokeTemplate);
+    app.fetchRandomJokes(5);
+  });
+</script>
 </body>
 </html>
