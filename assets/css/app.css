@@ -55,4 +55,9 @@ body {
   text-align: right;
   color: #757575; }
 
+.joke__id,
+.joke__category {
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.7); }
+
 /*# sourceMappingURL=app.css.map */
