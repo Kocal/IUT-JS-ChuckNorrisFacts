@@ -18,7 +18,7 @@ App.prototype.fetchRandomJoke = function () {
 
         self.buildJokeFrom(joke, function($joke) {
             $joke.hide();
-            self.$jokesContainer.append($joke);
+            self.$jokesContainer.prepend($joke);
             $joke.fadeIn(200);
             $joke.slideDown(500);
         });
@@ -49,8 +49,6 @@ App.prototype.fetchRandomJokes = function (count) {
  * @param {Function} callback
  */
 App.prototype.buildJokeFrom = function (joke, callback) {
-    console.log(joke);
-
     var template = this.jokesTemplate;
     var categories;
 
