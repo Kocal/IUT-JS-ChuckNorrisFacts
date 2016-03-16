@@ -4,6 +4,10 @@
 
   padding: 20px;
 
+  .brand {
+    text-align: center;
+  }
+
   .actions {
     padding: 0 16px;
     flex: 1;
@@ -11,5 +15,20 @@
 
   form {
     display: inline-block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #page__header {
+    flex-wrap: wrap;
+
+    .brand {
+      display: inline-block;
+      width: 100%;
+    }
+
+    .actions {
+      padding: 16px 0;
+    }
   }
 }

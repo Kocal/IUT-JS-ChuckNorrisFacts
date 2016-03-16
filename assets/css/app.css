@@ -14,12 +14,22 @@ body {
   display: flex;
   align-items: center;
   padding: 20px; }
+  #page__header .brand {
+    text-align: center; }
   #page__header .actions {
     padding: 0 16px;
     flex: 1; }
   #page__header form {
     display: inline-block; }
 
+@media screen and (max-width: 600px) {
+  #page__header {
+    flex-wrap: wrap; }
+    #page__header .brand {
+      display: inline-block;
+      width: 100%; }
+    #page__header .actions {
+      padding: 16px 0; } }
 .jokes {
   max-width: 900px;
   width: 100%;
@@ -65,4 +75,10 @@ body {
   font-weight: bold;
   color: rgba(0, 0, 0, 0.7); }
 
-/*# sourceMappingURL=cnf.css.map */
+.btn {
+  padding: 2px 5px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  white-space: nowrap; }
+
+/*# sourceMappingURL=app.css.map */
